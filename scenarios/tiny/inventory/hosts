@@ -1,0 +1,31 @@
+[internal]
+pc-1  mgmt_ip=10.70.70.11/24 ansible_net_os="linux"
+
+[server-farm]
+pc-2  mgmt_ip=10.70.71.11/24 ansible_net_os="linux"
+
+[network:children]
+internal
+server-farm
+
+[mgmt_servers]
+netautomator  ansible_net_os="linux"
+
+[routers]
+router-1  mgmt_ip=192.168.0.1/24 mgmt_interface=FastEthernet0/0 ansible_net_os="ios" image_style="iosv_l3"
+router-1  mgmt_ip=10.70.70.1/24 mgmt_interface=FastEthernet0/1 ansible_net_os="ios" image_style="iosv_l3"
+router-1  mgmt_ip=10.70.71.1/24 mgmt_interface=FastEthernet1/0 ansible_net_os="ios" image_style="iosv_l3"
+router-1  mgmt_ip=10.70.72.1/24 mgmt_interface=FastEthernet2/0 ansible_net_os="ios" image_style="iosv_l3"
+
+[switches]
+switch-1  ansible_net_os="gns3_builtin"
+switch-2  ansible_net_os="gns3_builtin"
+switch-3  ansible_net_os="gns3_builtin"
+
+[elk]
+logstash  ansible_net_os="linux"
+kibana  ansible_net_os="linux"
+elasticsearch  ansible_net_os="linux"
+
+[edge]
+nat     ansible_net_os="gns3_builtin"

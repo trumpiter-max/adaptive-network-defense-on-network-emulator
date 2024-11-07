@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  collections:
+    - davidban77.gns3
+
+  vars:
+    gns3_url: http://localhost
+
+  tasks:
+    - name: Get the server facts
+      gns3_facts:
+        url: "{{ gns3_url }}"
+        port: 3080
+        get_images: all
+        get_compute_ports: yes
+      register: result
+
+    - debug:
+        var: result

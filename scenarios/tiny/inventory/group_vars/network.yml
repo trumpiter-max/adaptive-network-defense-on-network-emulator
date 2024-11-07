@@ -1,0 +1,5 @@
+---
+syslog:
+  address: 192.168.0.5 # ip of logstash
+  protocol: udp
+  port: 5014

@@ -1,0 +1,10 @@
+pefile
+python-magic
+yara-python
+ssdeep
+virustotal-api
+gitpython
+pyelftools
+elasticsearch
+uuid
+py3dns

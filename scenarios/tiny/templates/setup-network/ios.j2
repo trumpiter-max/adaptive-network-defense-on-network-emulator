@@ -1,0 +1,41 @@
+terminal length 0
+configure terminal
+hostname {{ inventory_hostname }}
+! Archiving section
+archive
+log config
+logging enable
+logging size 500
+notify syslog contenttype plaintext
+! AAA
+aaa new-model
+aaa authentication login default local
+aaa authorization exec default local
+aaa authorization commands 15 default local
+! SSH
+crypto key generate rsa label LAB modulus 2048
+ip ssh version 2
+line vty 0 4
+transport input ssh
+! USER
+username {{ gns3_lab_user }} privilege 15 password 0 {{ gns3_lab_pass }}
+! logging
+logging userinfo
+logging origin-id hostname
+logging host {{ syslog.address }} transport {{ syslog.protocol }} port {{ syslog.port }}
+! port mirroring 
+{% if mirror_interface is defined %}
+monitor session 1 destination interface {{ mirror_interface }}
+{% endif %}
+do sh monitor session 1
+! interface configuration
+{% if mgmt_interface is defined %}
+interface {{ mgmt_interface }}
+{% if mgmt_ip is defined %}
+ip address {{ mgmt_ip | ipaddr('address') }} {{ mgmt_ip | ipaddr('netmask') }}
+{% endif %}
+no shutdown
+{% endif %}
+exit
+exit
+copy running-config i1_startup-config
