@@ -20,7 +20,7 @@ gns3_nodes_spec:
     - name: elasticsearch
       template: "ads-lab-elasticsearch"
     - name: router-1
-      template: "Cisco c3660"
+      template: "cisco-c3660"
     - name: nat
       template: "NAT"
     - name: switch-1

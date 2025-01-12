@@ -1,6 +1,7 @@
 #!/bin/bash
 images=(
   "alpine:latest"
+  "ubuntu:focal"
   "docker.elastic.co/logstash/logstash:8.15.3"
   "docker.elastic.co/elasticsearch/elasticsearch:8.15.3"
   "docker.elastic.co/kibana/kibana:8.15.3"

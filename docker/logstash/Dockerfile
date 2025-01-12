@@ -5,8 +5,7 @@ USER root
 RUN apt-get -y install net-tools \
     iproute2 \
     tcpdump \
-    net-tools \
-    vim
+    net-tools
 
 COPY pipeline/logstash.conf /usr/share/logstash/pipeline/logstash.conf
 
